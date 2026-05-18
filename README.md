@@ -99,7 +99,7 @@ Telegram Delivery
 
 ### Telegram Bot Interface
 
-![Bot Screenshot](images/telegram_bot.py)
+![Bot Screenshot](images/telegram_bot.jpg)
 
 
 
