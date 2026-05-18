@@ -55,3 +55,42 @@ Worked as part of a team-based AI engineering project:
 
 ---
 
+## Project Architecture
+
+![Image of the project architecture:](images/Architecture.jpg)
+
+---
+
+## Technologies Used
+
+- Python
+- FastAPI
+- Docker
+- OpenAI Whisper
+- OpenRouter API
+- Telegram Bot API
+- OpenCV
+- MoviePy
+- ReportLab
+- yt-dlp
+
+---
+## AI Pipeline Flow
+
+YouTube Link
+      ↓
+Video Download
+      ↓
+Audio Extraction
+      ↓
+Speech-to-Text (Whisper)
+      ↓
+LLM Summarization
+      ↓
+PDF Generation
+      ↓
+Telegram Delivery
+
+---
+
+## Project Screenshots
