@@ -57,7 +57,7 @@ Worked as part of a team-based AI engineering project:
 
 ## Project Architecture
 
-![System Architecture](images/architecture.jpg)
+![System Architecture](images/architecture .jpg)
 
 ---
 
@@ -78,17 +78,11 @@ Worked as part of a team-based AI engineering project:
 ## AI Pipeline Flow
 
 YouTube Link
-      ↓
-Video Download
-      ↓
-Audio Extraction
-      ↓
-Speech-to-Text (Whisper)
-      ↓
-LLM Summarization
-      ↓
-PDF Generation
-      ↓
+Video Download ↓
+Audio Extraction ↓
+Speech-to-Text (Whisper) ↓
+LLM Summarization↓
+PDF Generation ↓
 Telegram Delivery
 
 ---
