@@ -1,0 +1,97 @@
+# Telegram Video Summarizer Bot - Docker Compose
+# This orchestrates both the FastAPI server and Telegram bot
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: telegram-summarizer-api
+    # Production note (long polling): no inbound ports are required.
+    # Keep the API internal to the Docker network; the bot container calls it.
+    # If you need to access /docs, use SSH port-forwarding:
+    #   ssh -L 8000:127.0.0.1:8000 root@<server_ip>
+    environment:
+      # Telegram Bot Configuration
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      
+      # OpenRouter AI Configuration  
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
+      - OPENROUTER_MODEL=${OPENROUTER_MODEL:-openai/gpt-4o-mini}
+      
+      # YouTube Download Configuration
+      # In Docker, "cookies-from-browser" usually cannot work because the container
+      # has no access to your host Chrome/Keychain cookie store.
+      # Prefer a mounted cookies.txt file under /app/data.
+      - YTDLP_COOKIES_FILE=${YTDLP_COOKIES_FILE:-/app/data/youtube_cookies.txt}
+      # Do NOT set cookies-from-browser in containers unless you really know what you're doing.
+      # Containers don't have your host Chrome profile/keychain; this commonly fails.
+      # We intentionally override any host .env value to empty to avoid confusing failures.
+      - YTDLP_COOKIES_FROM_BROWSER=
+      - YTDLP_AUTO_REFRESH_COOKIES=${YTDLP_AUTO_REFRESH_COOKIES:-false}
+      - YTDLP_COOKIE_EXPIRY_WARNING_HOURS=${YTDLP_COOKIE_EXPIRY_WARNING_HOURS:-24}
+      - YTDLP_FORMAT=${YTDLP_FORMAT:-b[height<=720]/bv*[height<=720]+ba/b}
+      - YTDLP_RETRIES=${YTDLP_RETRIES:-3}
+      - YTDLP_SOCKET_TIMEOUT=${YTDLP_SOCKET_TIMEOUT:-15}
+      - YTDLP_PROCESS_TIMEOUT=${YTDLP_PROCESS_TIMEOUT:-240}
+      # Optional: route yt-dlp via proxy if the VPS IP gets blocked.
+      - YTDLP_PROXY=${YTDLP_PROXY:-}
+      
+      # Whisper Model
+      - WHISPER_MODEL=${WHISPER_MODEL:-base}
+      
+      # Python Environment
+      - PYTHONUNBUFFERED=1
+    volumes:
+      # Persist downloaded files and cookies
+      - ./data:/app/data
+      - ./results:/app/results
+      - ./fonts:/app/fonts
+      
+      # Persist Whisper cache
+      - whisper_cache:/root/.cache/whisper
+    restart: unless-stopped
+    healthcheck:
+      # Use an explicit timeout so the healthcheck doesn't hang and get killed by Docker.
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=5).read()"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    networks:
+      - telegram-bot-network
+
+  bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: telegram-summarizer-bot
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - PYTHONUNBUFFERED=1
+      - REQUESTS_TIMEOUT=30  # Increase timeout to 30 seconds
+      - REQUESTS_CONNECT_TIMEOUT=15  # Increase connection timeout
+      # Bot itself doesn't download from YouTube, but keep cookie path aligned so
+      # future diagnostics/tests from the bot container behave consistently.
+      - YTDLP_COOKIES_FILE=${YTDLP_COOKIES_FILE:-/app/data/youtube_cookies.txt}
+      - YTDLP_COOKIES_FROM_BROWSER=
+      - YTDLP_PROXY=${YTDLP_PROXY:-}
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+    depends_on:
+      - api
+    networks:
+      - telegram-bot-network
+    command: ["python", "telegram_bot.py"]
+
+# Named volumes for caching
+volumes:
+  whisper_cache:
+    driver: local
+
+# Network configuration
+networks:
+  telegram-bot-network:
+    driver: bridge
