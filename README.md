@@ -103,7 +103,7 @@ Telegram Delivery
 ![Preview](outputs/1st_image.jpg)
 ![Preview](outputs/2nd_image.jpg)
 
-[Open Full PDF](outputs/output1.pdf)
+[Open Full PDF](outputs/sample_output.pdf)
 
 ---
 
