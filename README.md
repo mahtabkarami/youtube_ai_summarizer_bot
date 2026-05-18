@@ -99,6 +99,8 @@ Telegram Delivery
 
 ![Bot Screenshot](images/telegram_bot.jpg)
 
+---
+
 ## Generated PDF Examples
 ![Preview](outputs/1st_image.jpg)
 ![Preview](outputs/2nd_image.jpg)
@@ -107,5 +109,38 @@ Telegram Delivery
 
 ---
 
+## Docker Setup
 
+```bash
+docker build -t telegram-summarizer .
+docker run -p 8000:8000 telegram-summarizer
+```
+
+---
+
+## Environment Variables
+
+Create a `.env` file:
+
+```env
+OPENROUTER_API_KEY=your_openrouter_key
+TELEGRAM_BOT_TOKEN=your_telegram_bot_token
+```
+
+---
+
+## Running the Project
+
+```bash
+pip install -r requirements.txt
+python main.py
+```
+
+---
+
+## Current Project Status
+
+The AI pipeline, transcription workflow, PDF generation, and backend integration were successfully implemented and tested locally.
+
+Deployment and live Telegram integration testing were partially affected by regional network and API connectivity limitations.
 
