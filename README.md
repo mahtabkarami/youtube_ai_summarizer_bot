@@ -102,5 +102,7 @@ Telegram Delivery
 ![Bot Screenshot](images/telegram_bot.jpg)
 
 ### Generated PDF Example
-![PDF Output-Page 1](images/outputp1.jpg)
-![PDF Output-Page 2](images/outputp2.jpg)
+![PDF Output-Page 1](images/1st_sample_outputp1.jpg)
+![PDF Output-Page 2](images/1st_sample_outputp1.jpg)
+
+More samples are available at this path:[images](images/)
