@@ -100,7 +100,12 @@ Telegram Delivery
 ![Bot Screenshot](images/telegram_bot.jpg)
 
 ## Generated PDF Examples
-![PDF1 Output](outputs/First Final Report.pdf)
-![PDF2 Output](
-![PDF3 Output](
+![Preview](outputs/1st_image.jpg)
+![Preview](outputs/2nd_image.jpg)
+
+[Open Full PDF](outputs/output1.pdf)
+
+---
+
+
 
