@@ -97,3 +97,9 @@ Telegram Delivery
 
 ## Project Screenshots
 
+### Telegram Bot Interface
+
+![Bot Screenshot](images/telegram_bot.py)
+
+
+
