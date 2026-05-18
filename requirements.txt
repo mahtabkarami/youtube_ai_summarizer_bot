@@ -1,0 +1,24 @@
+# Python runtime: 3.11.9
+# Pinned to versions currently installed and used by this project.
+
+arabic-reshaper==3.0.0
+fastapi==0.129.0
+fpdf==1.7.2
+moviepy==1.0.3
+numpy==2.3.5
+openai==2.21.0
+openai-whisper==20250625
+opencv-python==4.13.0.92
+pydantic==2.12.5
+pyTelegramBotAPI==4.31.0
+python-bidi==0.6.7
+python-dotenv==1.0.1
+requests==2.32.5
+torch==2.10.0
+uvicorn==0.38.0
+youtube-transcript-api==0.6.2
+yt-dlp==2026.2.4
+# Optional helper package used by yt-dlp for external JS components/signature solving.
+# (PyPI versions are not tied 1:1 with yt-dlp versions)
+yt-dlp-ejs==0.5.0
+
