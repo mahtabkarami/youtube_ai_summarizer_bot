@@ -95,17 +95,12 @@ Telegram Delivery
 
 ---
 
-## Project Screenshots
-
-### Telegram Bot Interface
+## Telegram Bot Interface
 
 ![Bot Screenshot](images/telegram_bot.jpg)
 
-### Generated PDF Examples
-![PDF Output1](outputs/First Final Report.pdf)
-![PDF Output2]
+## Generated PDF Examples
+![PDF1 Output](outputs/First Final Report.pdf)
+![PDF2 Output](
+![PDF3 Output](
 
-
-
-
-For ot
