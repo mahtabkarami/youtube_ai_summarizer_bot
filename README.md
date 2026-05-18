@@ -57,7 +57,7 @@ Worked as part of a team-based AI engineering project:
 
 ## Project Architecture
 
-![System Architecture](architecture.jpg)
+![System Architecture](images/architecture.jpg)
 
 ---
 
