@@ -77,14 +77,23 @@ Worked as part of a team-based AI engineering project:
 ---
 ## AI Pipeline Flow
 
+```text
 YouTube Link
-Video Download ↓
-Audio Extraction ↓
-Speech-to-Text (Whisper) ↓
-LLM Summarization↓
-PDF Generation ↓
+      ↓
+Video Download
+      ↓
+Audio Extraction
+      ↓
+Speech-to-Text (Whisper)
+      ↓
+LLM Summarization
+      ↓
+PDF Generation
+      ↓
 Telegram Delivery
+```
 
 ---
 
 ## Project Screenshots
+
